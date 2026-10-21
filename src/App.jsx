@@ -92,12 +92,11 @@ export default function App() {
 
       <div className="max-w-md mx-auto px-4 py-8 space-y-10">
 
-        {/* 1. KHUNG BAO THƯ & SAVE THE DATE (Đã được tối ưu lại tỉ lệ và bao thư) */}
+        {/* 1. KHUNG BAO THƯ & SAVE THE DATE */}
         <section className="text-center space-y-4 pt-2">
           <p className="tracking-[0.25em] italic text-lg text-[#7c2830] font-medium">SAVE THE DATE</p>
           
           <div className="relative mx-auto w-full max-w-[320px] pt-4 pb-2">
-            {/* Ảnh cưới chèn trong phong bì với viền trắng trang nhã */}
             <div className="relative z-10 w-[82%] mx-auto shadow-2xl rounded-t-lg overflow-hidden bg-white p-2 pb-6 border border-stone-200 transform -rotate-1 hover:rotate-0 transition duration-500">
               <img 
                 src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=80&w=600" 
@@ -106,13 +105,9 @@ export default function App() {
               />
             </div>
 
-            {/* Thân bao thư Burgundy thiết kế ôm trọn chân ảnh */}
             <div className="relative z-20 -mt-16 bg-[#5c1d24] text-white p-6 pt-12 rounded-2xl shadow-2xl border-2 border-[#7a252d] text-center overflow-hidden">
-              {/* Nắp bao thư cách điệu phía trên thân */}
               <div className="absolute top-0 left-0 right-0 h-12 bg-[#4a141a] opacity-60 rounded-b-[50%]"></div>
-              
-              {/* Con dấu sáp niêm phong hình trái tim */}
-              <div className="relative z-35 w-14 h-14 bg-gradient-to-br from-[#e6c687] to-[#b8860b] rounded-full mx-auto flex items-center justify-center text-[#5c1d24] text-2xl shadow-lg border-2 border-[#fff3cd] -mt-12 mb-3">
+              <div className="relative z-30 w-14 h-14 bg-gradient-to-br from-[#e6c687] to-[#b8860b] rounded-full mx-auto flex items-center justify-center text-[#5c1d24] text-2xl shadow-lg border-2 border-[#fff3cd] -mt-12 mb-3">
                 ❤️
               </div>
             </div>
@@ -163,7 +158,16 @@ export default function App() {
           </div>
         </section>
 
-        {/* 3. BẢNG ĐẾM NGƯỢC & TỜ LỊCH THÁNG 12 */}
+        {/* 3. KHỐI BỨC ẢNH LỚN CỦA CÔ DÂU & CHÚ RỂ (Bổ sung chuẩn theo hình mẫu) */}
+        <section className="w-full rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-white">
+          <img 
+            src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=800" 
+            alt="Hình ảnh Cô Dâu Chú Rể" 
+            className="w-full h-[450px] object-cover"
+          />
+        </section>
+
+        {/* 4. BẢNG ĐẾM NGƯỢC & TỜ LỊCH THÁNG 12 */}
         <section className="bg-[#5c1d24] text-[#fceee9] p-6 md:p-8 rounded-3xl shadow-xl space-y-6 text-center border border-[#7a252d]">
           <h2 className="text-xl md:text-2xl uppercase font-semibold text-white">THÔNG TIN TIỆC CƯỚI</h2>
           <p className="text-sm">VÀO LÚC <span className="font-bold text-base">16:30</span></p>
@@ -228,7 +232,7 @@ export default function App() {
           </a>
         </section>
 
-        {/* 4. TIỆC CƯỚI TỔ CHỨC TẠI & DRESS CODE */}
+        {/* 5. TIỆC CƯỚI TỔ CHỨC TẠI & DRESS CODE */}
         <section className="text-center space-y-6 bg-white p-6 rounded-3xl shadow-sm border border-stone-200">
           <div className="space-y-2">
             <h2 className="text-xl md:text-2xl font-serif text-[#5c1d24] font-bold">TIỆC CƯỚI TỔ CHỨC TẠI</h2>
@@ -257,7 +261,7 @@ export default function App() {
           </div>
         </section>
 
-        {/* 5. FORM RSVP */}
+        {/* 6. FORM RSVP */}
         <section className="bg-white p-6 rounded-3xl shadow-sm border border-stone-200 text-stone-800 space-y-4">
           <h2 className="text-xl font-serif text-center text-[#5c1d24] font-bold">Xác nhận tham dự</h2>
 
@@ -332,7 +336,7 @@ export default function App() {
           )}
         </section>
 
-        {/* 6. MỪNG CƯỚI & THANK YOU FOOTER */}
+        {/* 7. MỪNG CƯỚI & THANK YOU FOOTER */}
         <section className="text-center space-y-6">
           <div className="bg-white p-6 rounded-3xl shadow-sm border border-stone-200 space-y-4">
             <h2 className="text-xl font-serif text-[#5c1d24] font-bold uppercase tracking-wider">MỪNG CƯỚI</h2>
