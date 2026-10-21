@@ -2,12 +2,16 @@ import React, { useState, useEffect, useRef } from 'react';
 
 const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyEtcZI-_AtWXo_SLuzR7mgYN61xvHbQJ1OSVI3LyccXO-kI-zWXkgvWwbpoIcG3R54RQ/exec";
 
-// Danh sách album ảnh cưới slider
+// Danh sách 8 bức ảnh cưới cho Slideshow tự động trượt
 const SLIDER_IMAGES = [
   "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&q=80&w=800",
   "https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=80&w=800",
   "https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=800",
-  "https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&q=80&w=800"
+  "https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&q=80&w=800",
+  "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&q=80&w=800",
+  "https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&q=80&w=800",
+  "https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&q=80&w=800",
+  "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&q=80&w=800"
 ];
 
 export default function App() {
@@ -25,13 +29,13 @@ export default function App() {
     }
   };
 
-  // --- SLIDESHOW STATE & EFFECT ---
+  // --- SLIDESHOW AUTOMATIC SLIDE EFFECT (TRƯỢT TỰ ĐỘNG) ---
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
     const slideInterval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % SLIDER_IMAGES.length);
-    }, 3500); // Tự động chuyển ảnh sau mỗi 3.5 giây
+    }, 3000); // Tự động trượt ảnh sau mỗi 3 giây
 
     return () => clearInterval(slideInterval);
   }, []);
@@ -185,45 +189,49 @@ export default function App() {
           </div>
         </section>
 
-        {/* 3. KHỐI SLIDESHOW CÔ DÂU & CHÚ RỂ (TỰ ĐỘNG CHUYỂN ẢNH) */}
-        <section className="relative w-full rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-white group">
-          <div className="relative h-[460px] w-full overflow-hidden">
-            {SLIDER_IMAGES.map((imgUrl, index) => (
-              <img
-                key={index}
-                src={imgUrl}
-                alt={`Ảnh cưới ${index + 1}`}
-                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
-                  index === currentImageIndex ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
-                }`}
-              />
-            ))}
+        {/* 3. KHỐI SLIDESHOW 8 BỨC ẢNH TỰ TRƯỢT SANG TRỌNG */}
+        <section className="relative w-full rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-white">
+          <div className="relative h-[480px] w-full overflow-hidden">
+            <div 
+              className="flex h-full transition-transform duration-700 ease-in-out"
+              style={{ transform: `translateX(-${currentImageIndex * 100}%)` }}
+            >
+              {SLIDER_IMAGES.map((imgUrl, index) => (
+                <div key={index} className="w-full h-full flex-shrink-0">
+                  <img
+                    src={imgUrl}
+                    alt={`Ảnh cưới ${index + 1}`}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Nút Mũi tên Trái / Phải */}
           <button 
             onClick={prevSlide}
-            className="absolute left-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-black/70 transition cursor-pointer backdrop-blur-sm"
+            className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-black/70 transition cursor-pointer backdrop-blur-sm z-10"
           >
             ❮
           </button>
           <button 
             onClick={nextSlide}
-            className="absolute right-3 top-1/2 -translate-y-1/2 w-9 h-9 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-black/70 transition cursor-pointer backdrop-blur-sm"
+            className="absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-black/70 transition cursor-pointer backdrop-blur-sm z-10"
           >
             ❯
           </button>
 
-          {/* Dấu chấm chuyển trang (Dots Indicator) */}
-          <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2 z-10">
+          {/* Thanh chấm chỉ số 8 bức ảnh */}
+          <div className="absolute bottom-4 left-0 right-0 flex justify-center items-center gap-1.5 z-10 px-2">
             {SLIDER_IMAGES.map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => setCurrentImageIndex(idx)}
-                className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
+                className={`h-2 rounded-full transition-all duration-300 ${
                   idx === currentImageIndex 
                     ? 'bg-white w-6 shadow-md' 
-                    : 'bg-white/50 hover:bg-white/80'
+                    : 'bg-white/50 hover:bg-white/80 w-2'
                 }`}
               />
             ))}
