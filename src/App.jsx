@@ -133,11 +133,11 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#f7f4ed] text-[#4a1c1d] font-serif relative overflow-x-hidden selection:bg-[#5c1d24] selection:text-white">
-      {/* Nhạc nền */}
+      {/* Nhạc nền mới từ thư mục public */}
       <audio 
         ref={audioRef} 
         loop 
-        src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=wedding-march-114008.mp3" 
+        src="/wedding-music.mp3" 
       />
 
       {/* Nút nhạc cố định ở góc trên */}
