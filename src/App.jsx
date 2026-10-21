@@ -29,13 +29,42 @@ export default function App() {
     }
   };
 
+  // --- TỰ ĐỘNG TRƯỢT TRANG KHI VỪA MỞ LINK ---
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      let scrollAmount = 0;
+      const distance = 1.5; // Tốc độ trượt mượt mà
+      
+      const autoScroll = setInterval(() => {
+        window.scrollBy({ top: distance, behavior: 'smooth' });
+        scrollAmount += distance;
+
+        if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 10) {
+          clearInterval(autoScroll);
+        }
+      }, 30);
+
+      const stopScrollOnUserTouch = () => {
+        clearInterval(autoScroll);
+        window.removeEventListener('touchstart', stopScrollOnUserTouch);
+        window.removeEventListener('wheel', stopScrollOnUserTouch);
+      };
+
+      window.addEventListener('touchstart', stopScrollOnUserTouch);
+      window.addEventListener('wheel', stopScrollOnUserTouch);
+
+    }, 2000); // Chờ 2 giây sau khi mở web rồi bắt đầu trượt
+
+    return () => clearTimeout(timer);
+  }, []);
+
   // --- SLIDESHOW AUTOMATIC SLIDE EFFECT (TRƯỢT TỰ ĐỘNG) ---
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
     const slideInterval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % SLIDER_IMAGES.length);
-    }, 3000); // Tự động trượt ảnh sau mỗi 3 giây
+    }, 3000);
 
     return () => clearInterval(slideInterval);
   }, []);
@@ -208,7 +237,6 @@ export default function App() {
             </div>
           </div>
 
-          {/* Nút Mũi tên Trái / Phải */}
           <button 
             onClick={prevSlide}
             className="absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/40 text-white flex items-center justify-center hover:bg-black/70 transition cursor-pointer backdrop-blur-sm z-10"
@@ -222,7 +250,6 @@ export default function App() {
             ❯
           </button>
 
-          {/* Thanh chấm chỉ số 8 bức ảnh */}
           <div className="absolute bottom-4 left-0 right-0 flex justify-center items-center gap-1.5 z-10 px-2">
             {SLIDER_IMAGES.map((_, idx) => (
               <button
