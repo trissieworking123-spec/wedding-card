@@ -38,10 +38,8 @@ export default function App() {
     return () => clearInterval(timer);
   }, []);
 
-  // --- GOOGLE CALENDAR LINK ---
   const googleCalendarUrl = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=Đám+Cưới+Đức+Mạnh+%26+Lệ+Quyên&dates=20261229T093000Z/20261229T130000Z&details=Trân+trọng+kính+mời+bạn+đến+dự+lễ+thành+hôn+và+tiệc+cưới!&location=Số+1+Lương+Yên,+Bạch+Đằng,+Tp+Nghệ+An";
 
-  // --- RSVP STATE ---
   const [rsvpName, setRsvpName] = useState('');
   const [rsvpStatus, setRsvpStatus] = useState('yes');
   const [guestCount, setGuestCount] = useState('1');
@@ -94,23 +92,27 @@ export default function App() {
 
       <div className="max-w-md mx-auto px-4 py-8 space-y-10">
 
-        {/* 1. KHUNG BAO THƯ & SAVE THE DATE */}
-        <section className="text-center space-y-4 pt-4">
-          <p className="tracking-widest italic text-lg text-[#7c2830]">SAVE THE DATE</p>
+        {/* 1. KHUNG BAO THƯ & SAVE THE DATE (Đã được tối ưu lại tỉ lệ và bao thư) */}
+        <section className="text-center space-y-4 pt-2">
+          <p className="tracking-[0.25em] italic text-lg text-[#7c2830] font-medium">SAVE THE DATE</p>
           
-          <div className="relative mx-auto w-full max-w-xs pt-6">
-            {/* Ảnh cưới chèn trong phong bì */}
-            <div className="relative z-10 w-4/5 mx-auto -mb-16 shadow-lg rounded-t-sm overflow-hidden border-4 border-white transform hover:-translate-y-2 transition duration-500">
+          <div className="relative mx-auto w-full max-w-[320px] pt-4 pb-2">
+            {/* Ảnh cưới chèn trong phong bì với viền trắng trang nhã */}
+            <div className="relative z-10 w-[82%] mx-auto shadow-2xl rounded-t-lg overflow-hidden bg-white p-2 pb-6 border border-stone-200 transform -rotate-1 hover:rotate-0 transition duration-500">
               <img 
                 src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&q=80&w=600" 
                 alt="Đức Mạnh & Lệ Quyên" 
-                className="w-full h-auto object-cover"
+                className="w-full h-[340px] object-cover rounded-sm"
               />
             </div>
 
-            {/* Hình dáng Phong bì Burgundy */}
-            <div className="relative z-20 bg-[#5c1d24] text-white p-6 pt-12 rounded-b-xl shadow-xl border-t-2 border-[#80232c] text-center">
-              <div className="w-12 h-12 bg-[#d4af37] rounded-full mx-auto flex items-center justify-center text-[#5c1d24] text-xl shadow-inner font-bold border-2 border-[#f3e5ab] -mt-16 mb-2">
+            {/* Thân bao thư Burgundy thiết kế ôm trọn chân ảnh */}
+            <div className="relative z-20 -mt-16 bg-[#5c1d24] text-white p-6 pt-12 rounded-2xl shadow-2xl border-2 border-[#7a252d] text-center overflow-hidden">
+              {/* Nắp bao thư cách điệu phía trên thân */}
+              <div className="absolute top-0 left-0 right-0 h-12 bg-[#4a141a] opacity-60 rounded-b-[50%]"></div>
+              
+              {/* Con dấu sáp niêm phong hình trái tim */}
+              <div className="relative z-35 w-14 h-14 bg-gradient-to-br from-[#e6c687] to-[#b8860b] rounded-full mx-auto flex items-center justify-center text-[#5c1d24] text-2xl shadow-lg border-2 border-[#fff3cd] -mt-12 mb-3">
                 ❤️
               </div>
             </div>
@@ -173,7 +175,6 @@ export default function App() {
           </div>
           <p className="text-sm font-semibold">NĂM 2026</p>
 
-          {/* Đếm ngược 4 ô */}
           <div className="grid grid-cols-4 gap-2 pt-2 text-center text-xs font-sans">
             <div className="bg-black/20 p-2 rounded-lg">
               <span className="block text-xl font-bold text-white">{timeLeft.days}</span>
@@ -193,7 +194,6 @@ export default function App() {
             </div>
           </div>
 
-          {/* Tờ lịch Mini tháng 12 */}
           <div className="bg-[#42141a] p-4 rounded-2xl text-xs font-sans space-y-3 border border-white/10">
             <div className="grid grid-cols-7 gap-1 text-center font-bold text-stone-300 pb-1 border-b border-white/10">
               <span>CN</span><span>T2</span><span>T3</span><span>T4</span><span>T5</span><span>T6</span><span>T7</span>
@@ -247,7 +247,6 @@ export default function App() {
             </a>
           </div>
 
-          {/* DRESS CODE */}
           <div className="pt-4 space-y-3">
             <h3 className="text-lg font-bold tracking-wider text-[#5c1d24]">DRESS CODE</h3>
             <div className="flex justify-center gap-4 items-center">
@@ -258,7 +257,7 @@ export default function App() {
           </div>
         </section>
 
-        {/* 5. FORM RSVP (XÁC NHẬN THAM DỰ) */}
+        {/* 5. FORM RSVP */}
         <section className="bg-white p-6 rounded-3xl shadow-sm border border-stone-200 text-stone-800 space-y-4">
           <h2 className="text-xl font-serif text-center text-[#5c1d24] font-bold">Xác nhận tham dự</h2>
 
@@ -351,7 +350,6 @@ export default function App() {
             <p className="text-xs text-stone-500 font-sans">Quét mã QR để gửi lời chúc mừng & quà cưới online</p>
           </div>
 
-          {/* Bức ảnh cảm ơn tràn viền */}
           <div className="relative rounded-3xl overflow-hidden shadow-xl text-white text-center">
             <img 
               src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=800" 
